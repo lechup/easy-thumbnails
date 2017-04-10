@@ -4,6 +4,7 @@ import time
 from datetime import datetime, date, timedelta
 from optparse import make_option
 
+from django.utils.six import text_type
 from django.core.files.storage import get_storage_class
 from django.core.management.base import BaseCommand
 from easy_thumbnails.conf import settings
@@ -156,13 +157,13 @@ class Command(BaseCommand):
             action='store',
             dest='last_n_days',
             default=0,
-            type='int',
+            type=int,
             help='The number of days back in time to clean thumbnails for.')
         parser.add_argument(
             '--path',
             action='store',
             dest='cleanup_path',
-            type='string',
+            type=text_type,
             help='Specify a path to clean up.')
 
     def handle(self, *args, **options):
